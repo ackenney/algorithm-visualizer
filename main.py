@@ -31,14 +31,28 @@ def quickSort(unsortedArray):
     return newArray
 
 
-
-
 #FIXME
 def heapSort():
     pass
 
 
-#FIXME
+# selction sort function
+def selectionSort(unsortedArray):
+    indexLength = range(0,len(unsortedArray)-1)
+    
+    for i in indexLength:
+        minimumValue = i
+
+        for j in range(i+1,len(unsortedArray)):
+            if unsortedArray[j] < unsortedArray[minimumValue]:
+                minimumValue = j
+                
+        if minimumValue != i:
+            unsortedArray[minimumValue], unsortedArray[i] = unsortedArray[i], unsortedArray[minimumValue]
+    return unsortedArray
+
+
+# insertion sort function
 def insertionSort(unsortedArray):
     indexLength = range(1,len(unsortedArray))
     
@@ -50,8 +64,6 @@ def insertionSort(unsortedArray):
             i = i - 1
     return unsortedArray
             
-            
-
 
 # bubble sort function
 def bubbleSort(unsortedArray):
@@ -69,11 +81,10 @@ def bubbleSort(unsortedArray):
 
 
 
-
 if __name__== "__main__": 
     sortedArray = [1,2,3,4,5,6,7,8,9,10]
     unsortedArray = [9, 2, 3, 5, 7, 10, 8, 4, 6, 1]
     #random.shuffle(sortedArray)
     
     print(unsortedArray)    
-    print(insertionSort(unsortedArray))
+    print(selectionSort(unsortedArray))
