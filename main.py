@@ -6,7 +6,7 @@ def mergeSort():
     pass
 
 
-# quick sort functions
+# quick sort function
 def quickSort(unsortedArray):
     
     
@@ -43,9 +43,20 @@ def insertionSort():
     pass
 
 
-#FIXME
-def bubbleSort():
-    pass
+# bubble sort function
+def bubbleSort(unsortedArray):
+    indexLength = len(unsortedArray) -1
+    sorted = False
+    
+    while not sorted:
+        sorted = True
+        for i in range(0,indexLength):
+            if (unsortedArray[i] > unsortedArray[i+1]):
+                sorted = False
+                #swap
+                unsortedArray[i], unsortedArray[i+1] = unsortedArray[i+1], unsortedArray[i]
+    return unsortedArray
+
 
 
 
@@ -55,4 +66,4 @@ if __name__== "__main__":
     #random.shuffle(sortedArray)
     
     print(unsortedArray)    
-    print(quickSort(unsortedArray))
+    print(bubbleSort(unsortedArray))
