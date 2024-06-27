@@ -1,18 +1,18 @@
 import random
-
+from SortingAlgorithms import selectionSort
 from SortingAlgorithms import bubbleSort
 from SortingAlgorithms import quickSort
 from SortingAlgorithms import insertionSort
-from SortingAlgorithms import selectionSort
-
-
+    
 #FIXME
 def mergeSort():
     pass
 
 
+
+
 #FIXME
-def heapSort(unsortedArray):
+def heapSort():
     pass
 
 
@@ -22,4 +22,4 @@ if __name__== "__main__":
     #random.shuffle(sortedArray)
     
     print(unsortedArray)    
-    print(bubbleSort(unsortedArray))
+    print(selectionSort(unsortedArray))
