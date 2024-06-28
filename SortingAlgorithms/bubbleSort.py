@@ -1,13 +1,20 @@
 # bubble sort function
-def bubbleSort(unsortedArray):
-    indexLength = len(unsortedArray) -1
-    sorted = False
-    
-    while not sorted:
-        sorted = True
-        for i in range(0,indexLength):
-            if (unsortedArray[i] > unsortedArray[i+1]):
-                sorted = False
-                #swap
-                unsortedArray[i], unsortedArray[i+1] = unsortedArray[i+1], unsortedArray[i]
-    return unsortedArray
+from visualizer import displayArray
+
+
+def bubbleSort(displayInformation):
+	array = displayInformation.array
+
+	for i in range(len(array) - 1):
+		for j in range(len(array) - 1 - i):
+			num1 = array[j]
+			num2 = array[j + 1]
+   
+			if (num1 > num2):
+				array[j], array[j + 1] = array[j + 1], array[j]
+				displayArray(displayInformation, {j: displayInformation.GREEN, j + 1: displayInformation.RED}, True)
+				yield True
+
+	return array
+
+
