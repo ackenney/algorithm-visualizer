@@ -1,3 +1,5 @@
+from visualizer import Visualizer
+from visualizer import displayWindow
 from SortingAlgorithms.bubbleSort import bubbleSort
 from SortingAlgorithms.insertionSort import insertionSort
 from SortingAlgorithms.quickSort import quickSort
