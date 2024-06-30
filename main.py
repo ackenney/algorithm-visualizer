@@ -6,21 +6,14 @@ from visualizer import Visualizer, displayWindow
 from SortingAlgorithms.bubbleSort import bubbleSort
 from SortingAlgorithms.insertionSort import insertionSort
 
-#FIXME
-def mergeSort():
-    pass
 
-
-#FIXME
-def heapSort():
-    pass
-
-
+# The createUnsortedArray function generates an unsorted array of sequential numbers from 1 to arrayLength 
 def createUnsortedArray(arrayLength):
             
 	unsortedArray = [i for i in range(1,arrayLength)]
 	random.shuffle(unsortedArray)
 	return unsortedArray
+
 
 if __name__== "__main__": 
 	running = True
@@ -29,8 +22,11 @@ if __name__== "__main__":
 	arrayLength = 50
 	
 	array = createUnsortedArray(arrayLength)
-	displayArray = Visualizer(1200, 1000, array)
+	displayArray = Visualizer(1500, 1000, array)
 	isSorting = False
+ 
+	icon = pygame.image.load('assets/logo.png') 
+	pygame.display.set_icon(icon) # Change window icon
 	
 
 	currentAlgorithm = bubbleSort
@@ -68,6 +64,16 @@ if __name__== "__main__":
 			elif event.key == pygame.K_b and not isSorting:
 				currentAlgorithm = bubbleSort
 				algorithmName = "Bubble Sort"
+			elif event.key == pygame.K_q and not isSorting:
+				currentAlgorithm = bubbleSort
+				algorithmName = "Quick Sort"
+			elif event.key == pygame.K_s and not isSorting:
+				currentAlgorithm = bubbleSort
+				algorithmName = "Selection Sort"
+			elif event.key == pygame.K_m and not isSorting:
+				currentAlgorithm = bubbleSort
+				algorithmName = "Merge Sort"
+    
 
 
 	pygame.quit()

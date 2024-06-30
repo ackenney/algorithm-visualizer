@@ -11,8 +11,8 @@ class Visualizer:
 	TEAL = 118, 171, 174
 	BACKGROUND_COLOR = 49, 54, 63
 
-	FONT = pygame.font.Font('assets/font.ttf', 30)
-	LARGE_FONT = pygame.font.Font('assets/font.ttf', 40)
+	FONT = pygame.font.Font('assets/font.ttf', 25)
+	LARGE_FONT = pygame.font.Font('assets/font.ttf', 35)
 
 	SIDE_PAD = 150
 	TOP_PAD = 200
@@ -40,10 +40,13 @@ def displayWindow(displayInformation, algo_name):
 	title = displayInformation.LARGE_FONT.render(f"{algo_name}", 1, displayInformation.TEAL)
 	displayInformation.window.blit(title, (displayInformation.width/2 - title.get_width()/2 , 5))
 
-	isSorting = displayInformation.FONT.render("I - Insertion Sort | B - Bubble Sort| Q - Quick Sort", 1, displayInformation.TEAL)
+	isSorting = displayInformation.FONT.render("I - Insertion Sort | B - Bubble Sort | Q - Quick Sort | S - Selection Sort | M - Merge Sort", 1, displayInformation.TEAL)
 	displayInformation.window.blit(isSorting, (displayInformation.width/2 - isSorting.get_width()/2 , 45))
  
-	controls = displayInformation.FONT.render("R - Reset | SPACE - Start Sorting", 1, displayInformation.TEAL)
+
+
+ 
+	controls = displayInformation.FONT.render("Spacebar - Sort Array | R - Reset Array", 1, displayInformation.TEAL)
 	displayInformation.window.blit(controls, (displayInformation.width/2 - controls.get_width()/2 , 75))
  
 	displayArray(displayInformation)
