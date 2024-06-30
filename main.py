@@ -29,12 +29,12 @@ if __name__== "__main__":
 	arrayLength = 50
 	
 	array = createUnsortedArray(arrayLength)
-	displayArray = Visualizer(1200, 900, array)
+	displayArray = Visualizer(1200, 1000, array)
 	isSorting = False
 	
 
 	currentAlgorithm = bubbleSort
-	algorithmName = "Bubble Sort"
+	algorithmName = "Select Algorithm"
 	currentAlgorithmNext = None
 
 	while running:

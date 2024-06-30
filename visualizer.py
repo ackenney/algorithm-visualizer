@@ -8,17 +8,18 @@ class Visualizer:
 	WHITE = 255, 255, 255
 	GREEN = 0, 255, 0
 	RED = 255, 0, 0
-	BACKGROUND_COLOR = WHITE
+	TEAL = 118, 171, 174
+	BACKGROUND_COLOR = 49, 54, 63
 
-	FONT = pygame.font.SysFont('ariel', 30)
-	LARGE_FONT = pygame.font.SysFont('ariel', 40)
+	FONT = pygame.font.Font('assets/font.ttf', 30)
+	LARGE_FONT = pygame.font.Font('assets/font.ttf', 40)
 
-	SIDE_PAD = 100
-	TOP_PAD = 150
+	SIDE_PAD = 150
+	TOP_PAD = 200
 
 	def __init__(self, width, height, array):
 		self.width = width
-		self.height = height
+		self.height = height + 15
 
 		self.window = pygame.display.set_mode((width, height))
 		pygame.display.set_caption("Sorting Algorithm Visualization")
@@ -36,20 +37,15 @@ class Visualizer:
 def displayWindow(displayInformation, algo_name):
 	displayInformation.window.fill(displayInformation.BACKGROUND_COLOR)
 
-
-	font = pygame.font.SysFont('Georgia',40,bold=True)
-	surf = font.render('Quit', True, 'black')
-	button = pygame.Rect(200,200,110,60)
-
-	title = displayInformation.LARGE_FONT.render(f"{algo_name}", 1, displayInformation.BLACK)
+	title = displayInformation.LARGE_FONT.render(f"{algo_name}", 1, displayInformation.TEAL)
 	displayInformation.window.blit(title, (displayInformation.width/2 - title.get_width()/2 , 5))
 
-	controls = displayInformation.FONT.render("R - Reset | SPACE - Start Sorting", 1, displayInformation.BLACK)
-	displayInformation.window.blit(controls, (displayInformation.width/2 - controls.get_width()/2 , 45))
-
-	isSorting = displayInformation.FONT.render("I - Insertion Sort | B - Bubble Sort", 1, displayInformation.BLACK)
-	displayInformation.window.blit(isSorting, (displayInformation.width/2 - isSorting.get_width()/2 , 75))
-
+	isSorting = displayInformation.FONT.render("I - Insertion Sort | B - Bubble Sort| Q - Quick Sort", 1, displayInformation.TEAL)
+	displayInformation.window.blit(isSorting, (displayInformation.width/2 - isSorting.get_width()/2 , 45))
+ 
+	controls = displayInformation.FONT.render("R - Reset | SPACE - Start Sorting", 1, displayInformation.TEAL)
+	displayInformation.window.blit(controls, (displayInformation.width/2 - controls.get_width()/2 , 75))
+ 
 	displayArray(displayInformation)
 	pygame.display.update()
 
@@ -66,7 +62,7 @@ def displayArray(displayInformation, color_positions={}, clear_bg=False):
 		x = displayInformation.start_x + i * displayInformation.block_width
 		y = displayInformation.height - (val - displayInformation.min_val) * displayInformation.block_height
 
-		color = displayInformation.BLACK
+		color = displayInformation.WHITE
 
 		if i in color_positions:
 			color = color_positions[i] 

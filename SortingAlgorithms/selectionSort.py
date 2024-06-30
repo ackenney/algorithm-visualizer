@@ -1,4 +1,8 @@
 # selction sort function
+
+from visualizer import displayArray
+
+
 def selectionSort(unsortedArray):
     indexLength = range(0,len(unsortedArray)-1)
     
