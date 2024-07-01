@@ -5,6 +5,8 @@ import random
 from visualizer import Visualizer, displayWindow
 from SortingAlgorithms.bubbleSort import bubbleSort
 from SortingAlgorithms.insertionSort import insertionSort
+from SortingAlgorithms.selectionSort import selectionSort
+from SortingAlgorithms.quickSort import quickSort
 
 
 # The createUnsortedArray function generates an unsorted array of sequential numbers from 1 to arrayLength 
@@ -20,6 +22,7 @@ if __name__== "__main__":
 	clock = pygame.time.Clock()
 
 	arrayLength = 50
+	fps = 60
 	
 	array = createUnsortedArray(arrayLength)
 	displayArray = Visualizer(1500, 1000, array)
@@ -34,7 +37,7 @@ if __name__== "__main__":
 	currentAlgorithmNext = None
 
 	while running:
-		clock.tick(60)
+		clock.tick(fps)
 		if isSorting:
 			try:
 				next(currentAlgorithmNext)
@@ -65,10 +68,10 @@ if __name__== "__main__":
 				currentAlgorithm = bubbleSort
 				algorithmName = "Bubble Sort"
 			elif event.key == pygame.K_q and not isSorting:
-				currentAlgorithm = bubbleSort
+				currentAlgorithm = quickSort
 				algorithmName = "Quick Sort"
 			elif event.key == pygame.K_s and not isSorting:
-				currentAlgorithm = bubbleSort
+				currentAlgorithm = selectionSort
 				algorithmName = "Selection Sort"
 			elif event.key == pygame.K_m and not isSorting:
 				currentAlgorithm = bubbleSort

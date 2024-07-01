@@ -1,6 +1,9 @@
 # quick sort function
-def quickSort(unsortedArray):
-    
+
+from visualizer import displayArray
+
+def quickSort(displayInformation):
+    unsortedArray = displayInformation.array
     
     isGreater =[]
     isLower = []
@@ -18,6 +21,7 @@ def quickSort(unsortedArray):
         else:
             isLower.append(index)
             
+    displayArray(displayInformation, {newArray: displayInformation.GREEN, newArray + 1: displayInformation.RED}, True)
     newArray = quickSort(isLower) + [pivot] + quickSort(isGreater)
 
     return newArray

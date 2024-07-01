@@ -15,13 +15,13 @@ class Visualizer:
 	LARGE_FONT = pygame.font.Font('assets/font.ttf', 35)
 
 	SIDE_PAD = 150
-	TOP_PAD = 200
+	TOP_PAD = 250
 
 	def __init__(self, width, height, array):
 		self.width = width
-		self.height = height + 15
+		self.height = height
 
-		self.window = pygame.display.set_mode((width, height))
+		self.window = pygame.display.set_mode((width, height + 25))
 		pygame.display.set_caption("Sorting Algorithm Visualization")
 		self.set_list(array)
 
@@ -53,10 +53,10 @@ def displayWindow(displayInformation, algo_name):
 	pygame.display.update()
 
 
-def displayArray(displayInformation, color_positions={}, clear_bg=False):
+def displayArray(displayInformation, color_positions={}, clearBackground=False):
 	array = displayInformation.array
 
-	if clear_bg:
+	if clearBackground:
 		clear_rect = (displayInformation.SIDE_PAD//2, displayInformation.TOP_PAD, 
 						displayInformation.width - displayInformation.SIDE_PAD, displayInformation.height - displayInformation.TOP_PAD)
 		pygame.draw.rect(displayInformation.window, displayInformation.BACKGROUND_COLOR, clear_rect)
@@ -72,5 +72,5 @@ def displayArray(displayInformation, color_positions={}, clear_bg=False):
 
 		pygame.draw.rect(displayInformation.window, color, (x, y, displayInformation.block_width, displayInformation.height))
 
-	if clear_bg:
+	if clearBackground:
 		pygame.display.update()
