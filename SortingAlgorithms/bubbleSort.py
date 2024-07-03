@@ -4,9 +4,7 @@ from visualizer import displayArray
 
 
 def bubbleSort(displayInformation):
-    
-    # Start with unsorted array
-	array = displayInformation.array 
+	array = displayInformation.array # Start with unsorted array
 
 	for i in range(len(array) - 1):
 		for j in range(len(array) - 1 - i):
@@ -18,8 +16,6 @@ def bubbleSort(displayInformation):
 				# Display array
 				displayArray(displayInformation, {j: displayInformation.GREEN, j + 1: displayInformation.RED}, True)
 				yield True
-	
- 	# Return sorted array
-	return array 
+	return array # Return sorted array
 
 

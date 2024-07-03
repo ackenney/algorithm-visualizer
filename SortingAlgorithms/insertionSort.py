@@ -1,23 +1,24 @@
+# Implementation of Insertion Sort
+
 from visualizer import displayArray
 
-
 def insertionSort(displayInformation):
+	array = displayInformation.array # Start with unsorted array
+	arrayLength = len(array) # Get the length of the array
     
-	array = displayInformation.array
-
-	for i in range(1, len(array)):
-		current = array[i]
-
-		while True:
-			isSorting = i > 0 and array[i - 1] > current
+    # If length is 0 or 1, it is already sorted
+	if arrayLength <= 1: 
+		return  
+ 
+	for i in range(1, arrayLength):
+		key = array[i] 
+		j = i-1
+		while j >= 0 and key < array[j]:  # While greater than the key shift one position ahead
+			array[j+1] = array[j]  # Shift values to the right
+			j -= 1
+			array[j+1] = key 
 			
-			if not isSorting:
-				break
-
-			array[i] = array[i - 1]
-			i = i - 1
-			array[i] = current
-			displayArray(displayInformation, {i - 1: displayInformation.GREEN, i: displayInformation.RED},True)
+   			# Display array at current state
+			displayArray(displayInformation, {i : displayInformation.GREEN, j: displayInformation.RED},True)
 			yield True
-
-	return array
+	return array # Return sorted array
