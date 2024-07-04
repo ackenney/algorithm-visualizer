@@ -1,3 +1,5 @@
+# Visualizer class
+
 import pygame
 import math
 pygame.font.init()
@@ -12,10 +14,10 @@ class Visualizer:
 	BACKGROUND_COLOR = 49, 54, 63
 
 	FONT = pygame.font.Font('assets/font.ttf', 25)
-	LARGE_FONT = pygame.font.Font('assets/font.ttf', 35)
+	HEADER_FONT = pygame.font.Font('assets/font.ttf', 40)
 
 	SIDE_PAD = 150
-	TOP_PAD = 250
+	TOP_PAD = 275
 
 	def __init__(self, width, height, array):
 		self.width = width
@@ -35,30 +37,27 @@ class Visualizer:
 		self.start_x = self.SIDE_PAD // 2
 
 def displayWindow(displayInformation, algo_name):
-	displayInformation.window.fill(displayInformation.BACKGROUND_COLOR)
+	# Create window
+	displayInformation.window.fill(displayInformation.BACKGROUND_COLOR) 
 
-	title = displayInformation.LARGE_FONT.render(f"{algo_name}", 1, displayInformation.TEAL)
-	displayInformation.window.blit(title, (displayInformation.width/2 - title.get_width()/2 , 5))
-
-	isSorting = displayInformation.FONT.render("I - Insertion Sort | B - Bubble Sort | Q - Quick Sort | S - Selection Sort | M - Merge Sort", 1, displayInformation.TEAL)
-	displayInformation.window.blit(isSorting, (displayInformation.width/2 - isSorting.get_width()/2 , 45))
- 
-
-
- 
+	# Display menu
+	title = displayInformation.HEADER_FONT.render(f"{algo_name}", 1, displayInformation.TEAL)
+	displayInformation.window.blit(title, (displayInformation.width/2 - title.get_width()/2 , 15))
+	isSorting = displayInformation.FONT.render("1 - Insertion Sort | 2 - Bubble Sort | 3 - Selection Sort | 4 - Shell Sort ", 1, displayInformation.TEAL)
+	displayInformation.window.blit(isSorting, (displayInformation.width/2 - isSorting.get_width()/2 , 95))
 	controls = displayInformation.FONT.render("Spacebar - Sort Array | R - Reset Array", 1, displayInformation.TEAL)
-	displayInformation.window.blit(controls, (displayInformation.width/2 - controls.get_width()/2 , 75))
- 
+	displayInformation.window.blit(controls, (displayInformation.width/2 - controls.get_width()/2 , 125))
 	displayArray(displayInformation)
 	pygame.display.update()
 
 
+# This function displays the array from a given state
 def displayArray(displayInformation, color_positions={}, clearBackground=False):
 	array = displayInformation.array
 
 	if clearBackground:
 		clear_rect = (displayInformation.SIDE_PAD//2, displayInformation.TOP_PAD, 
-						displayInformation.width - displayInformation.SIDE_PAD, displayInformation.height - displayInformation.TOP_PAD)
+			displayInformation.width - displayInformation.SIDE_PAD, displayInformation.height - displayInformation.TOP_PAD)
 		pygame.draw.rect(displayInformation.window, displayInformation.BACKGROUND_COLOR, clear_rect)
 
 	for i, val in enumerate(array):
@@ -69,8 +68,10 @@ def displayArray(displayInformation, color_positions={}, clearBackground=False):
 
 		if i in color_positions:
 			color = color_positions[i] 
-
+   
 		pygame.draw.rect(displayInformation.window, color, (x, y, displayInformation.block_width, displayInformation.height))
+		pygame.draw.rect(displayInformation.window, displayInformation.BLACK, (x, y, displayInformation.block_width, displayInformation.height),2)
+		
 
 	if clearBackground:
 		pygame.display.update()
