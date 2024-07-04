@@ -1,58 +1,58 @@
 import random
 import pygame
-import pygame
+import pygame 
 import random
 from visualizer import Visualizer, displayWindow
 from SortingAlgorithms.bubbleSort import bubbleSort
 from SortingAlgorithms.insertionSort import insertionSort
 from SortingAlgorithms.selectionSort import selectionSort
-from SortingAlgorithms.quickSort import quickSort
+from SortingAlgorithms.shellSort import shellSort
 
 
 # The createUnsortedArray function generates an unsorted array of sequential numbers from 1 to arrayLength 
 def createUnsortedArray(arrayLength):
             
-	unsortedArray = [i for i in range(1,arrayLength)]
+	unsortedArray = [i for i in range(1,arrayLength+1)]
 	random.shuffle(unsortedArray)
 	return unsortedArray
 
 
 if __name__== "__main__": 
+    
 	running = True
 	clock = pygame.time.Clock()
-
-	arrayLength = 50
+	arrayLength = 80
 	fps = 60
 	
 	array = createUnsortedArray(arrayLength)
 	displayArray = Visualizer(1500, 1000, array)
 	isSorting = False
  
+ 	# Change window icon
 	icon = pygame.image.load('assets/logo.png') 
-	pygame.display.set_icon(icon) # Change window icon
+	pygame.display.set_icon(icon) 
 	
-
-	currentAlgorithm = bubbleSort
+	# Algorithm generate start
+	currentAlgorithm = bubbleSort #bubble sort as default
 	algorithmName = "Select Algorithm"
 	currentAlgorithmNext = None
 
 	while running:
 		clock.tick(fps)
-		if isSorting:
+		if isSorting: # Algorithm generator
 			try:
 				next(currentAlgorithmNext)
 			except StopIteration:
 				isSorting = False
 		else:
-			displayWindow(displayArray, algorithmName)
+			displayWindow(displayArray, algorithmName) # Show algorithm
 
 		for event in pygame.event.get():
+			# Choice select loop
 			if event.type == pygame.QUIT:
 				running = False
-
 			if event.type != pygame.KEYDOWN:
 				continue
-
 			if event.key == pygame.K_r:
 				array = createUnsortedArray(arrayLength)
 				displayArray.set_list(array)
@@ -60,23 +60,19 @@ if __name__== "__main__":
 			elif event.key == pygame.K_SPACE and isSorting == False:
 				isSorting = True
 				currentAlgorithmNext = currentAlgorithm(displayArray)
-			
-			elif event.key == pygame.K_i and not isSorting:
+		
+			#Algorithm selection process
+			elif event.key == pygame.K_1 and not isSorting:
 				currentAlgorithm = insertionSort
 				algorithmName = "Insertion Sort"
-			elif event.key == pygame.K_b and not isSorting:
+			elif event.key == pygame.K_2 and not isSorting:
 				currentAlgorithm = bubbleSort
 				algorithmName = "Bubble Sort"
-			elif event.key == pygame.K_q and not isSorting:
-				currentAlgorithm = quickSort
-				algorithmName = "Quick Sort"
-			elif event.key == pygame.K_s and not isSorting:
+			elif event.key == pygame.K_3 and not isSorting:
 				currentAlgorithm = selectionSort
 				algorithmName = "Selection Sort"
-			elif event.key == pygame.K_m and not isSorting:
-				currentAlgorithm = bubbleSort
-				algorithmName = "Merge Sort"
-    
-
-
+			elif event.key == pygame.K_4 and not isSorting:
+				currentAlgorithm = shellSort
+				algorithmName = "Shell Sort"
+			
 	pygame.quit()
